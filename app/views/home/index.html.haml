@@ -1,0 +1,9 @@
+%h1 ShopDatabase
+
+- if current_user.nil?
+  = button_to new_user_session_path, class: 'login-button' do
+    Sign in
+- else
+  = button_to dashboard_index_path, class: 'login-button', method: :get do
+    Go to App
+  = button_to 'Log out', destroy_user_session_path, method: :delete

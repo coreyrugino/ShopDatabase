@@ -1,0 +1,28 @@
+
+- unless flash.empty?
+  :javascript
+    - flash.each do |f|
+      - type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info')
+      toastr['=type']('= f[1] ');
+
+%p.notice= notice
+%p.alert= alert
+
+
+
+
+-# <haml_silent> unless flash.empty? </haml_silent><haml_block>
+-# <script type="text/javascript">
+-# <haml_silent>       flash.each do |f|
+-# </haml_silent><haml_block><haml_silent>  	     type = f[0].to_s.gsub(&#39;alert&#39;, &#39;error&#39;).gsub(&#39;notice&#39;, &#39;info&#39;)
+-# </haml_silent>  	    toastr['<haml_loud> type </haml_loud>']('<haml_loud> f[1] </haml_loud>');
+-# </haml_block>    </script>
+
+<script>
+
+<haml_silent> unless flash.empty? </haml_silent><haml_block>
+<script type="text/javascript">
+<haml_silent>       flash.each do |f|
+</haml_silent><haml_block><haml_silent>  	     type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info')
+</haml_silent>  	    toastr['<haml_loud> type </haml_loud>']('<haml_loud> f[1] </haml_loud>');
+</haml_block>    </script>
