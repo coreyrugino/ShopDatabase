@@ -1,3 +1,11 @@
 %h1 Shop Dashboard
 %h3= "Welcome do the Dashboard #{current_user.email}"
 = button_to 'Log out', destroy_user_session_path, method: :delete
+
+-# -binding.pry
+-if current_user.superwizzard_role
+  %h5 A super wizzard has arrived!
+-elsif current_user.wizzard_role
+  %h5 Wizzard man!
+-else
+  %h5 commoner
