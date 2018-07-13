@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
+  # RailsAdmin gem
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'dashboard/index'
 
   # get 'home/index'
-
+  get 'dashboard/index'
   devise_for :users
   resources :users
+  resources :timecards
+
+  # get "add_movie_to_likes", to: "users#add_movie_to_likes"
+  get "timecard_punch", to: "timecards#timecard_punch"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
