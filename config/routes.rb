@@ -7,10 +7,17 @@ Rails.application.routes.draw do
   get 'dashboard/index'
   devise_for :users
   resources :users
-  resources :timecards
+  resources :timecards #do
+  #   collection do
+  #     get :clock_out
+  #   end
+  # end
 
   # get "add_movie_to_likes", to: "users#add_movie_to_likes"
-  get "timecard_punch", to: "timecards#timecard_punch"
+  # get "timecard_punch", to: "timecards#timecard_punch"
+  get "clock_out", to: "timecards#clock_out"
+
+  # get "timecard_path", to: "timecards#edit", via: [:patch]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

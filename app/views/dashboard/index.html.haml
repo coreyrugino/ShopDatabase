@@ -10,5 +10,5 @@
 -else
   %h5 commoner
 
--# = button_to 'clock-in', timecard_punch_path, method: :post
 = button_to 'clock-in', timecards_path, method: :post
+= link_to 'clock-out', :controller => "timecards", :action => "clock_out"
