@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # get "add_movie_to_likes", to: "users#add_movie_to_likes"
   # get "timecard_punch", to: "timecards#timecard_punch"
   get "clock_out", to: "timecards#clock_out"
+  get "clock_in", to: "timecards#clock_in"
 
   # get "timecard_path", to: "timecards#edit", via: [:patch]
   # The priority is based upon order of creation: first created -> highest priority.

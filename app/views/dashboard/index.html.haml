@@ -10,5 +10,8 @@
 -else
   %h5 commoner
 
-= button_to 'clock-in', timecards_path, method: :post
-= link_to 'clock-out', :controller => "timecards", :action => "clock_out"
+-# = button_to 'clock-in', timecards_path, method: :post
+- if @clockedin.clockout.nil?
+  = button_to 'clock-out', clock_out_path, :class =>"Button", :method => :get
+-else
+  = button_to 'clocks-ins', clock_in_path, :class =>"Button", :method => :get

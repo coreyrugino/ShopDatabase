@@ -11,9 +11,12 @@ class TimecardsController < ApplicationController
     @timecard.user_id = current_user.id
     @timecard.save
   end
+# TODO make the button go to a clock_in instead of the create.
 
-  def create
+  def clock_in
+    #was create
     puts "===Created==="
+    # binding.pry
     @timecard = Timecard.new
     @timecard.user_id = current_user.id
     @timecard.clockin = Time.now
