@@ -5,7 +5,13 @@ class TimecardsController < ApplicationController
   def show
   end
 
-# TODO DONE make the button go to a clock_in instead of the create.
+  def timecard_punch
+    binding.pry
+    @timecard = Timecard.new
+    @timecard.user_id = current_user.id
+    @timecard.save
+  end
+# TODO make the button go to a clock_in instead of the create.
 
   def clock_in
     #was create

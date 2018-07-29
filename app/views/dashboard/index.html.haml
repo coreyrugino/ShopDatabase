@@ -2,7 +2,6 @@
 %h3= "Welcome do the Dashboard #{current_user.email}"
 = button_to 'Log out', destroy_user_session_path, method: :delete
 
--# -binding.pry
 -if current_user.superwizzard_role
   %h5 A super wizzard has arrived!
 -elsif current_user.wizzard_role
@@ -10,8 +9,25 @@
 -else
   %h5 commoner
 
--# = button_to 'clock-in', timecards_path, method: :post
-- if @clockedin.clockout.nil?
+- if @clockedin == nil #|| @clockedin.clockout.nil?
+  = button_to 'clocks-ins', clock_in_path, :class =>"Button", :method => :get
+
+-elsif @clockedin.clockout.nil?
+  = "Clock-in: #{@clockedin.clockin.strftime("%I:%M")}"
+  %br
   = button_to 'clock-out', clock_out_path, :class =>"Button", :method => :get
+  -# = @clockedin.clockin.strftime("%A, %b %d %Y %I:%M %z ")
+
 -else
+  = "Punch ID: #{@clockedin.id}"
+  %br
+  = "Clock-out: #{@clockedin.clockout.strftime("%I:%M")}"
+  %br
+  = "Clock-in: #{@clockedin.clockin.strftime("%I:%M")}"
+  %br
+  - ts = @clockedin.clockout - @clockedin.clockin
+  - timeServed = ts.to_i / 60
+  -# - timeServed = @clockedin.clockout.strftime("%I:%M") - @clockedin.clockin.strftime("%I:%M")
+  = "Total: #{timeServed} minutes"
+  %br
   = button_to 'clocks-ins', clock_in_path, :class =>"Button", :method => :get
