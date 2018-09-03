@@ -9,7 +9,7 @@
 -else
   %h5 commoner
 
-- if @clockedin == nil #|| @clockedin.clockout.nil?
+-if @clockedin == nil
   = button_to 'clocks-ins', clock_in_path, :class =>"Button", :method => :get
 
 -elsif @clockedin.clockout.nil?
@@ -21,9 +21,9 @@
 -else
   = "Punch ID: #{@clockedin.id}"
   %br
-  = "Clock-out: #{@clockedin.clockout.strftime("%I:%M")}"
-  %br
   = "Clock-in: #{@clockedin.clockin.strftime("%I:%M")}"
+  %br
+  = "Clock-out: #{@clockedin.clockout.strftime("%I:%M")}"
   %br
   - ts = @clockedin.clockout - @clockedin.clockin
   - timeServed = ts.to_i / 60
@@ -31,3 +31,8 @@
   = "Total: #{timeServed} minutes"
   %br
   = button_to 'clocks-ins', clock_in_path, :class =>"Button", :method => :get
+
+%br
+="Tools: #{@tools.count}"
+= button_to 'all tools', tools_path, :class =>"Button", :method => :get
+-# =@tools.any?

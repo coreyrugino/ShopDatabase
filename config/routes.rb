@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  #
+  # get 'tools/index'
+  # get 'tools/show'
+  # get 'tools/new'
+  resources :tools
 
   # RailsAdmin gem
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
