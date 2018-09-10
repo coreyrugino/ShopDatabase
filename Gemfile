@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 4.0.0'
+gem 'materialize-sass', '~> 0.97.7'
 gem 'haml-rails'
 gem 'toastr-rails'
 gem 'cancancan'

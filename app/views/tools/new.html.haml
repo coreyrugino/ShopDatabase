@@ -1,2 +1,14 @@
 %h1 Tools#new
-%p Find me in app/views/tools/new.html.haml
+= form_for @tool do |t|
+  -# =t.hidden_field :user_id
+
+  =t.label :name
+  =t.text_field :name
+
+-# %form{:action => "#"}
+-#   %p
+-#     %label
+-#       %input{:type => "checkbox"}
+-#       %span Red
+
+= button_to 'All Tools', tools_path, :class => "Button", :method => :get

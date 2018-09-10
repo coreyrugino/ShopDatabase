@@ -121,6 +121,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
+    materialize-sass (0.97.7)
+      sass (~> 3.3)
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
@@ -246,6 +248,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  materialize-sass (~> 0.97.7)
   pg (~> 0.20.0)
   pry
   rails (= 4.2.8)

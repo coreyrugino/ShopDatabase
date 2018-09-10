@@ -1,18 +1,19 @@
 -# %div{:class => "w3-container>"}
-%div.w3-container
-  %h1.center Tools#index
+%div
+  %h1.center-align Tools#index
   ="tool count: #{@tools.count}"
+  %p i can be clicked away
   %br
-  %table.w3-table-all
+  %table.highlight.cenered
     %thead
-      %tr.w3-light-grey.w3-hover-red
+      %tr
         %th
         %th name
         %th quantity
         %th brand
     - i=1
     -@tools.each do |tool|
-      %tr.w3-hover-green
+      %tr
         %td
           ="#{i})"
         %td
@@ -20,3 +21,5 @@
         %td
           =tool.quantity
         - i=i+1
+
+  = button_to 'new tools', new_tool_path, :class =>"btn", :method => :get
