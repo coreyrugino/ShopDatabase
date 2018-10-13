@@ -12,8 +12,8 @@ class ToolsController < ApplicationController
 
   def create
     @tool = Tool.new(tool_prams)
-    if saved
-      redirect_to tools_index_path
+    if @tool.save
+      redirect_to tools_path
     else
       render :new
     end
@@ -23,6 +23,10 @@ class ToolsController < ApplicationController
 
   def tool_prams
     #TODO add params
-    params.require(:name, :kind, :user_id)
+    # params.require(:name, :kind, :user_id)
+    params.require(:tool).permit(:name, :quantity, :brand, :kind, :mill, :lathe,
+      :drill, :diameter, :length, :drill_length, :radius, :material, :teeth, :f_low,
+      :f_high, :f_rough, :f_finish, :fZ_low, :fZ_high, :fZ_rough, :fZ_finish, :Vc_low,
+      :Vc_high,)
   end
 end

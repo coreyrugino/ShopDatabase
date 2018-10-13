@@ -1,14 +1,65 @@
 %h1 Tools#new
-= form_for @tool do |t|
-  -# =t.hidden_field :user_id
 
-  =t.label :name
-  =t.text_field :name
+%button#myBtn{:onclick => "endmill()", :type => "button"} Endmill
+%button{:onclick => "myFunction()"} Click me
+%p#demo
 
--# %form{:action => "#"}
--#   %p
--#     %label
--#       %input{:type => "checkbox"}
--#       %span Red
+#endmillForm
+  = form_for @tool do |t|
+    -# =t.hidden_field :user_id
+    =t.label :name
+    =t.text_field :name
+
+    =t.label :brand
+    =t.text_field :brand
+
+    =t.label :quantity
+    =t.text_field :quantity
+
+    =t.label :diameter
+    =t.text_field :diameter
+
+    =t.label :length
+    =t.text_field :length
+
+    =t.label :teeth
+    =t.text_field :teeth
+
+    =t.label :fZ_low
+    =t.text_field :fZ_low
+
+    =t.label :fZ_high
+    =t.text_field :fZ_high
+
+    =t.label :fZ_rough
+    =t.text_field :fZ_rough
+
+    =t.label :Vc_low
+    =t.text_field :Vc_low
+
+    =t.label :Vc_high
+    =t.text_field :Vc_high
+
+    =t.label :Vc_rough
+    =t.text_field :Vc_rough
+
+    =t.label :Vc_finish
+    =t.text_field :Vc_finish
+
+    =t.submit
 
 = button_to 'All Tools', tools_path, :class => "Button", :method => :get
+
+:javascript
+  function myFunction() {
+    debugger;
+    document.getElementById("demo").innerHTML = "Hello World";
+  }
+  function endmill() {
+    console.log("button hit");
+    x = document.getElementById('endmillForm');
+    if (x.style.display !== "contents"){
+    x.style.display = "contents";}
+    else {x.style.display = "none";}
+    //alert( 'I am clicked!' )
+  }
