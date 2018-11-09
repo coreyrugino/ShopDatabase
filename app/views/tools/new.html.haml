@@ -1,12 +1,23 @@
 %h1 Tools#new
 
 %button#myBtn{:onclick => "endmill()", :type => "button"} Endmill
-%button{:onclick => "myFunction()"} Click me
+%button#myBtn{:onclick => "drill()", :type => "button"} Drill
+
+-# %button{:onclick => "myFunction()"} Click me
 %p#demo
 
-#endmillForm
+#endmillForm{:style => "display:none",}
   = form_for @tool do |t|
     -# =t.hidden_field :user_id
+
+    = t.radio_button :kind, 'flat'
+    = t.label :kind, 'Flat', :value => 'Flat'
+    = t.radio_button :kind, 'ball'
+    = t.label :kind, 'Ball', :value => 'Ball'
+
+    %br
+    %br
+
     =t.label :name
     =t.text_field :name
 
@@ -34,6 +45,9 @@
     =t.label :fZ_rough
     =t.text_field :fZ_rough
 
+    =t.label :fZ_finish
+    =t.text_field :fZ_finish
+
     =t.label :Vc_low
     =t.text_field :Vc_low
 
@@ -48,6 +62,9 @@
 
     =t.submit
 
+#drillForm{:style => "display:none",}
+  %h1 Drill
+
 = button_to 'All Tools', tools_path, :class => "Button", :method => :get
 
 :javascript
@@ -56,10 +73,35 @@
     document.getElementById("demo").innerHTML = "Hello World";
   }
   function endmill() {
-    console.log("button hit");
+    console.log("endmill button hit");
     x = document.getElementById('endmillForm');
     if (x.style.display !== "contents"){
     x.style.display = "contents";}
     else {x.style.display = "none";}
-    //alert( 'I am clicked!' )
+    cancelOthers(endmillForm.id)
+  }
+  function drill() {
+    console.log("drill button hit");
+    d = document.getElementById('drillForm');
+    if (d.style.display !== "contents"){
+    d.style.display = "contents";}
+    else {d.style.display = "none";}
+    cancelOthers(drillForm.id)
+  }
+  function cancelOthers(form) {
+    console.log("cancel other button if activated");
+    var kindArray = ["drillForm", "endmillForm"];
+    a = kindArray.length
+    for (i = 0; i < kindArray.length; i++)
+      if (form == kindArray[i]){
+      kindArray.splice(i,1)
+      }
+    kindArray.forEach(checkit);
+  }
+  function checkit(value) {
+    //console.log(fullForm)
+    ef = document.getElementById(value);
+    if (ef.style.display !== "none" || ef.style.display === null){
+    ef.style.display = "none"
+    }
   }
