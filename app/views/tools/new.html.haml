@@ -1,26 +1,26 @@
-%h1 Tools#new
+%h1 Add a new tool
 
 %button#myBtn{:onclick => "endmill()", :type => "button"} Endmill
+%button#myBtn{:onclick => "turningTools()", :type => "button"} Turning
 %button#myBtn{:onclick => "drill()", :type => "button"} Drill
 
--# %button{:onclick => "myFunction()"} Click me
-%p#demo
-
 #endmillForm{:style => "display:none",}
+  %h1 Endmill
   = form_for @tool do |t|
-    -# =t.hidden_field :user_id
-
-    = t.radio_button :kind, 'flat'
-    = t.label :kind, 'Flat', :value => 'Flat'
-    = t.radio_button :kind, 'ball'
-    = t.label :kind, 'Ball', :value => 'Ball'
-
-    %br
-    %br
+    =t.hidden_field :mill, :value => true
 
     =t.label :name
     =t.text_field :name
 
+    = t.label :kind
+    %br
+    %br
+    = t.radio_button :kind, 'flat'
+    = t.label :kind, 'Flat', :value => 'Flat'
+    = t.radio_button :kind, 'ball'
+    = t.label :kind, 'Ball', :value => 'Ball'
+    %br
+    %br
     =t.label :brand
     =t.text_field :brand
 
@@ -62,16 +62,107 @@
 
     =t.submit
 
+#turningToolsForm{:style => "display:none",}
+  %h1 Turning Tools
+  = form_for @tool do |t|
+    =t.hidden_field :lathe, :value => true
+
+    =t.label :name
+    =t.text_field :name
+
+    = t.label :kind
+    %br
+    %br
+    = t.radio_button :kind, 'rough'
+    = t.label :kind, 'Rough', :value => 'Rough'
+    = t.radio_button :kind, 'finish'
+    = t.label :kind, 'Finish', :value => 'Finish'
+    = t.radio_button :kind, 'threading'
+    = t.label :kind, 'Threading', :value => 'Threading'
+
+    %br
+    %br
+    =t.label :brand
+    =t.text_field :brand
+
+    =t.label :quantity
+    =t.text_field :quantity
+
+    =t.label :diameter
+    =t.text_field :diameter
+
+    =t.label :f_low
+    =t.text_field :f_low
+
+    =t.label :f_high
+    =t.text_field :f_high
+
+    =t.label :f_rough
+    =t.text_field :f_rough
+
+    =t.label :f_finish
+    =t.text_field :f_finish
+
+    =t.label :Vc_low
+    =t.text_field :Vc_low
+
+    =t.label :Vc_high
+    =t.text_field :Vc_high
+
+    =t.label :Vc_rough
+    =t.text_field :Vc_rough
+
+    =t.label :Vc_finish
+    =t.text_field :Vc_finish
+
+    =t.submit
+
 #drillForm{:style => "display:none",}
   %h1 Drill
+  = form_for @tool do |t|
+    =t.hidden_field :drill, :value => true
 
+    =t.label :name
+    =t.text_field :name
+
+    =t.label :brand
+    =t.text_field :brand
+
+    =t.label :quantity
+    =t.text_field :quantity
+
+    = t.label :length
+    %br
+    %br
+    = t.radio_button :drill_length, 'Extra Length'
+    = t.label :drill_length, 'Extra Length', :value => 'Extra Length'
+    = t.radio_button :drill_length, 'Jobber Length'
+    = t.label :drill_length, 'Jobber Length', :value => 'Jobber Length'
+    = t.radio_button :drill_length, 'Machine Screw'
+    = t.label :drill_length, 'Machine Screw', :value => 'Machine Screw'
+    %br
+    %br
+    =t.label :diameter
+    =t.text_field :diameter
+
+    =t.label :f_low
+    =t.text_field :f_low
+
+    =t.label :f_high
+    =t.text_field :f_high
+
+    =t.label :Vc_low
+    =t.text_field :Vc_low
+
+    =t.label :Vc_high
+    =t.text_field :Vc_high
+
+    =t.submit
+
+%br
 = button_to 'All Tools', tools_path, :class => "Button", :method => :get
 
 :javascript
-  function myFunction() {
-    debugger;
-    document.getElementById("demo").innerHTML = "Hello World";
-  }
   function endmill() {
     console.log("endmill button hit");
     x = document.getElementById('endmillForm');
@@ -79,6 +170,14 @@
     x.style.display = "contents";}
     else {x.style.display = "none";}
     cancelOthers(endmillForm.id)
+  }
+  function turningTools() {
+    console.log ("turning toool button hit");
+    t = document.getElementById('turningToolsForm');
+    if (t.style.display !== "contents"){
+    t.style.display = "contents";}
+    else {t.style.display = "none";}
+    cancelOthers(turningToolsForm.id)
   }
   function drill() {
     console.log("drill button hit");
@@ -90,7 +189,7 @@
   }
   function cancelOthers(form) {
     console.log("cancel other button if activated");
-    var kindArray = ["drillForm", "endmillForm"];
+    var kindArray = ["drillForm", "endmillForm", "turningToolsForm"];
     a = kindArray.length
     for (i = 0; i < kindArray.length; i++)
       if (form == kindArray[i]){
