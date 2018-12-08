@@ -3,6 +3,7 @@
 %button#myBtn{:onclick => "endmill()", :type => "button"} Endmill
 %button#myBtn{:onclick => "turningTools()", :type => "button"} Turning
 %button#myBtn{:onclick => "drill()", :type => "button"} Drill
+%button#myBtn{:onclick => "toolHolder()", :type => "button"} Tool Holders
 
 #endmillForm{:style => "display:none",}
   %h1 Endmill
@@ -117,6 +118,65 @@
 
     =t.submit
 
+#toolHolderForm{:style => "display:none",}
+  %h1 Tool Holder
+  =form_for @tool, html: { multipart: true } do |t|
+
+    =t.label :name
+    =t.text_field :name
+
+    -# = t.label :kind
+    %br
+    %br
+    = t.check_box :mill, id:"mill"
+    = t.label "Mill", for:"mill", id:"mill"
+    %br
+    = t.check_box :lathe, id:"lathe"
+    = t.label "Lathe", for:"lathe", id:"lathe"
+    %br
+    %br
+    
+    =t.label :brand
+    =t.text_field :brand
+
+    =t.label :quantity
+    =t.text_field :quantity
+
+    =t.label :diameter
+    =t.text_field :diameter
+
+    =t.label :length
+    =t.text_field :length
+
+    =t.label :teeth
+    =t.text_field :teeth
+
+    =t.label :fZ_low
+    =t.text_field :fZ_low
+
+    =t.label :fZ_high
+    =t.text_field :fZ_high
+
+    =t.label :fZ_rough
+    =t.text_field :fZ_rough
+
+    =t.label :fZ_finish
+    =t.text_field :fZ_finish
+
+    =t.label :Vc_low
+    =t.text_field :Vc_low
+
+    =t.label :Vc_high
+    =t.text_field :Vc_high
+
+    =t.label :Vc_rough
+    =t.text_field :Vc_rough
+
+    =t.label :Vc_finish
+    =t.text_field :Vc_finish
+
+    =t.submit
+
 #drillForm{:style => "display:none",}
   %h1 Drill
   = form_for @tool do |t|
@@ -187,10 +247,18 @@
     else {d.style.display = "none";}
     cancelOthers(drillForm.id)
   }
+  function toolHolder() {
+    console.log("tool holder button hit");
+    tH = document.getElementById('toolHolderForm');
+    if (tH.style.display !== "contents"){
+    tH.style.display = "contents";}
+    else {tH.style.display = "none";}
+    cancelOthers(toolHolderForm.id)
+  }
   function cancelOthers(form) {
     console.log("cancel other button if activated");
-    var kindArray = ["drillForm", "endmillForm", "turningToolsForm"];
-    a = kindArray.length
+    var kindArray = ["drillForm", "endmillForm", "turningToolsForm", "toolHolderForm"];
+    // a = kindArray.length
     for (i = 0; i < kindArray.length; i++)
       if (form == kindArray[i]){
       kindArray.splice(i,1)
